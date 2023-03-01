@@ -22,8 +22,7 @@
 import os, sys
 
 def main_import_contacts():
-    with open(os.path.join(sys.path[0], 'phonebook.txt'), 'r', encoding='utf-8') as data:   
-    # with open('phonebook.txt', 'r', encoding='utf-8') as data:
+    with open(os.path.join(sys.path[0], 'phonebook.txt'), 'r', encoding='utf-8') as data: 
         s = data.readlines()
         for i in range(len(s)):
             phonebook[i] = s[i].split()
@@ -38,6 +37,7 @@ def import_contacts(some_string):
 def export_contact(new_contact):
     with open(os.path.join(sys.path[0],'phonebook.txt'), 'a+', encoding='utf-8') as data:
         data.writelines(' '.join(new_contact) +'\n')
+        phonebook[len(phonebook)+1] = new_contact
 
 def input_contact():
     new_contact = [input('surname: ')]
@@ -64,7 +64,8 @@ def user_interface():
             for i in phonebook:
                 print(*phonebook[i])
         user_input = input('\nyour choise: ')
-print('bye')
+    
+    print('bye')
 
 phonebook = dict()
 user_interface()
